@@ -4,9 +4,15 @@
   <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
   <style>
     body {
+        width: 250px;
         padding: 10px;
         font-family: Arial, sans-serif;
         background-color: rgb(255, 224, 231);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
     }
     .site-entry {
         margin-bottom: 10px;
@@ -29,8 +35,10 @@
     <!-- Site entries will be added here -->
   </div>
 
-  <button id="addSite">Add Website</button>
-  <button id="save">Save Changes</button>
+  <div>
+    <button id="addSite">Add Website</button>
+    <button id="save">Save Changes</button>
+  </div>
 
   <script src="popup.js"></script>
 </body>
