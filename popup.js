@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('addSite').addEventListener('click', addNewSite);
   document.getElementById('save').addEventListener('click', saveChanges);
+  
+  document.getElementById('sites-container').addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-btn')) {
+      const index = parseInt(e.target.dataset.index);
+      removeSite(index);
+    }
+  });
 });
 
 function renderSites() {
@@ -16,12 +23,36 @@ function renderSites() {
   sites.forEach((site, index) => {
     const div = document.createElement('div');
     div.className = 'site-entry';
-    div.innerHTML = `
-      <input type="text" value="${site.url}" placeholder="Website URL (e.g., youtube.com)">
-      <input type="number" value="${site.startHour}" min="0" max="23" placeholder="Start hour">
-      <input type="number" value="${site.endHour}" min="0" max="23" placeholder="End hour">
-      <button onclick="removeSite(${index})">Remove</button>
-    `;
+    
+    const urlInput = document.createElement('input');
+    urlInput.type = 'text';
+    urlInput.value = site.url;
+    urlInput.placeholder = 'Website URL (e.g., youtube.com)';
+    
+    const startInput = document.createElement('input');
+    startInput.type = 'number';
+    startInput.value = site.startHour;
+    startInput.min = '0';
+    startInput.max = '23';
+    startInput.placeholder = 'Start hour';
+    
+    const endInput = document.createElement('input');
+    endInput.type = 'number';
+    endInput.value = site.endHour;
+    endInput.min = '0';
+    endInput.max = '23';
+    endInput.placeholder = 'End hour';
+    
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.className = 'remove-btn';
+    removeButton.dataset.index = index;
+
+    div.appendChild(urlInput);
+    div.appendChild(startInput);
+    div.appendChild(endInput);
+    div.appendChild(removeButton);
+    
     container.appendChild(div);
   });
 }

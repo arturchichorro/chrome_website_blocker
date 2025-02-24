@@ -1,5 +1,5 @@
 chrome.webNavigation.onBeforeNavigate.addListener(async (details) => {
-    if (details.frameId !== 0) return; // Only handle main frame navigation
+    if (details.frameId !== 0) return;
   
     const result = await chrome.storage.local.get('blockedSites');
     const blockedSites = result.blockedSites || [];
